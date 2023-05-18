@@ -13,6 +13,7 @@ bus.on('my-event', (payload) => {
   console.log('Received event:', payload.data);
   console.log('HELLO')
 })
+
 watch(()=> busOther.value.get('sidebarCollapsed'), () => {
   console.log('watch')
 })

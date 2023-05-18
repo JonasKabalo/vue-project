@@ -23,6 +23,10 @@ function clearCart() {
 async function buy() {
   const n = await cart.purchaseItems()
 
+  if (n === 0) {
+    return
+  }
+
   console.log(`Bought ${n} items`)
 
   cart.rawItems = []

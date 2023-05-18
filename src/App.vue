@@ -1,6 +1,15 @@
 <script setup>
-import { ref, watch, onMounted, getCurrentInstance, inject } from 'vue'
+import { ref, watch, onMounted, getCurrentInstance, inject, defineComponent } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
+
+import defaultStart from './layouts/defaultStart.vue'
+
+defineComponent({
+  components: {
+    defaultStart
+  }
+})
+
 import HelloWorld from './components/HelloWorld.vue'
 import useEventsBus from './plugins/eventBus'
 const { busOther } = useEventsBus()
@@ -57,7 +66,9 @@ export default {
     </div>
   </header>
 
-  <RouterView />
+  <defaultStart>
+    <RouterView />
+  </defaultStart>
 </template>
 
 <style scoped>

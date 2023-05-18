@@ -30,6 +30,7 @@ watch(()=> busOther.value.get('sidebarCollapsed'), () => {
 const el = ref(0)
 const a = 1
 const b = ref(2)
+const lengthTable = ref()
 
 defineExpose({
   a,
@@ -43,6 +44,34 @@ onMounted(() => {
 // data from main.js
 const message = inject('message')
 console.log(message)
+
+// ----
+let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+const syncData = async () => {
+  /*
+  let response = await fetch('/article/fetch/post/user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify(user)
+  });
+  */
+
+  let response = await fetch(url);
+
+  console.log(response); // 200
+  console.log(response.status); // 200
+  lengthTable.value = response.status
+  let commits = await response.json(); // read response body and parse as JSON
+  console.log(commits.length);
+};
+syncData()
+/*
+fetch(url).then(response => {
+}).catch(error => {
+});
+*/
 </script>
 
 <!-- script>
@@ -62,6 +91,8 @@ export default {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/store">Store</RouterLink>
+        {{ lengthTable }}
       </nav>
     </div>
   </header>

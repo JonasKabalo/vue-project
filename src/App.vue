@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, onMounted, getCurrentInstance, inject, defineComponent } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 import defaultStart from './layouts/defaultStart.vue'
 
@@ -13,6 +13,10 @@ defineComponent({
 import useEventsBus from './plugins/eventBus'
 const { busOther } = useEventsBus()
 
+watch(()=> busOther.value.get('sidebarCollapsed'), () => {
+  console.log('watch')
+})
+
 // ----
 const instance = getCurrentInstance();
 const bus = instance.appContext.config.globalProperties.$bus
@@ -20,10 +24,6 @@ const bus = instance.appContext.config.globalProperties.$bus
 bus.on('my-event', (payload) => {
   console.log('Received event:', payload.data);
   console.log('HELLO')
-})
-
-watch(()=> busOther.value.get('sidebarCollapsed'), () => {
-  console.log('watch')
 })
 
 // ----
@@ -72,6 +72,12 @@ fetch(url).then(response => {
 }).catch(error => {
 });
 */
+
+const route = useRoute();
+
+watch(() => route.name, () => {
+  console.debug(`MyCoolComponent - watch route.name changed to ${route.name}`);
+}, { deep: true });
 </script>
 
 <!-- script>

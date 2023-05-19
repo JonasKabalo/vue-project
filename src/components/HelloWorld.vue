@@ -1,21 +1,9 @@
 <script setup>
-import { onMounted } from 'vue'
-import bus from '../plugins/bus'
-import useEventsBus from '../plugins/eventBus';
-
 defineProps({
   msg: {
     type: String,
     required: true
   }
-})
-
-// defineEmits(['change', 'delete'])
-const { emit }= useEventsBus()
-emit('sidebarCollapsed')
-
-onMounted(() => {
-  bus.emit('my-event', { data: 'Hello!!!!!!' })
 })
 </script>
 

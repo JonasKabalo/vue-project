@@ -1,7 +1,17 @@
 <script setup>
-import { ref, /* watch, onMounted, getCurrentInstance, inject, defineComponent */ } from 'vue'
+import { ref, onMounted } from 'vue'
+import bus from '../plugins/bus'
+import useEventsBus from '../plugins/eventBus';
 
 const accountBalance = ref(100)
+
+// defineEmits(['change', 'delete'])
+const { emit }= useEventsBus()
+emit('sidebarCollapsed')
+
+onMounted(() => {
+  bus.emit('my-event', { data: 'Hello!!!!!!' })
+})
 
 </script>
 

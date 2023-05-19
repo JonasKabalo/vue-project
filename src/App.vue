@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted, getCurrentInstance, inject, defineComponent } from 'vue'
+import { ref, watch, onMounted, getCurrentInstance, inject, defineComponent, computed } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 import defaultStart from './layouts/defaultStart.vue'
@@ -76,8 +76,15 @@ fetch(url).then(response => {
 const route = useRoute();
 
 watch(() => route.name, () => {
-  console.debug(`MyCoolComponent - watch route.name changed to ${route.name}`);
+  console.debug(`MyCoolComponent - watch route.name changed to ${ route.name }`);
 }, { deep: true });
+
+const plusOne = computed({
+  get: () => el.value + 1,
+  set: (val) => {
+    el.value = val - 1
+  }
+})
 </script>
 
 <!-- script>
@@ -95,6 +102,7 @@ export default {
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/store">Store</RouterLink>
         {{ lengthTable }}
+        {{ plusOne }}
       </nav>
     </div>
   </header>

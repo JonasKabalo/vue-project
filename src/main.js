@@ -12,6 +12,11 @@ const app = createApp(App)
 
 app.config.globalProperties.$version = version;
 app.config.globalProperties.$bus = $bus;
+app.config.globalProperties.$addPoundSign = {
+  currencyGBP(value) {
+    return '£' + value
+  }
+}
 
 app.provide(/* key */ 'message', /* value */ 'message from app')
 

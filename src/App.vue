@@ -25,6 +25,7 @@ bus.on('my-event', (payload) => {
 watch(()=> busOther.value.get('sidebarCollapsed'), () => {
   console.log('watch')
 })
+
 // ----
 const el = ref(0)
 const a = 1

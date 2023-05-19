@@ -8,7 +8,7 @@ const accountBalance = ref(100)
 <template>
   <main>
     <p v-highlight="'yellow'">Highlight this text bright yellow</p>
-    <p>{{ $filters.currencyUSD(accountBalance) }}</p>
+    <p>{{ $addPoundSign.currencyGBP(accountBalance) }}</p>
     <!--
       <input v-on:keyup.page-down="nextPage">
       <input v-on:keypress.q="quit">

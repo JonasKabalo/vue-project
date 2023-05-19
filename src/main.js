@@ -19,4 +19,11 @@ app.use(createPinia())
 app.use(router)
 app.use($bus);
 
+
+app.directive('highlight', {
+  beforeMount(el, binding) {
+    el.style.background = binding.value
+  }
+})
+
 app.mount('#app')

@@ -4,13 +4,14 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 import defaultStart from './layouts/defaultStart.vue'
 
+import useEventsBus from './plugins/eventBus'
+
 defineComponent({
   components: {
     defaultStart
   }
 })
 
-import useEventsBus from './plugins/eventBus'
 const { busOther } = useEventsBus()
 
 watch(()=> busOther.value.get('sidebarCollapsed'), () => {
